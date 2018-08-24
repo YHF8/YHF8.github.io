@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="变量的作用域 变量作用域可分为：”全局变量”和”局部变量”  全局变量 全局变量可在本页面代码中的任何位置使用。  123456789var a = 0;//定义全局变量function show() &amp;#123;    //在函数内部变量没加var定义的属于全局变量    a = 10;//改变或是定义全局变量    window.b = 5;//定义全局变量&amp;#125;show()conso">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript变量的作用域和闭包">
+<meta property="og:url" content="http://yoursite.com/2017/06/14/html/cw/14/index.html">
+<meta property="og:site_name" content="前端实训">
+<meta property="og:description" content="变量的作用域 变量作用域可分为：”全局变量”和”局部变量”  全局变量 全局变量可在本页面代码中的任何位置使用。  123456789var a = 0;//定义全局变量function show() &amp;#123;    //在函数内部变量没加var定义的属于全局变量    a = 10;//改变或是定义全局变量    window.b = 5;//定义全局变量&amp;#125;show()conso">
+<meta property="og:image" content="http://yoursite.com/images/html/cw/14.jpg">
+<meta property="og:updated_time" content="2017-06-30T14:28:56.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript变量的作用域和闭包">
+<meta name="twitter:description" content="变量的作用域 变量作用域可分为：”全局变量”和”局部变量”  全局变量 全局变量可在本页面代码中的任何位置使用。  123456789var a = 0;//定义全局变量function show() &amp;#123;    //在函数内部变量没加var定义的属于全局变量    a = 10;//改变或是定义全局变量    window.b = 5;//定义全局变量&amp;#125;show()conso">
+<meta name="twitter:image" content="http://yoursite.com/images/html/cw/14.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/14/html/cw/14/"/>
+
+
+
+
+
+  <title>JavaScript变量的作用域和闭包 | 前端实训</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端实训</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study-notes">
+          <a href="/categories/study-notes/" rel="section">
+            
+            学习笔记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+      <div class="tags">
+        <ul>
+	
+		<li><a href="/tags/html/" rel="tag"> html</a></li>
+	
+		<li><a href="/tags/javascript/" rel="tag"> javascript</a></li>
+	
+		<li><a href="/tags/css/" rel="tag"> css</a></li>
+	
+
+
+
+        </ul>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal  " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/14/html/cw/14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="前端实训">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/qrcode.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端实训">
+    </span>
+
+    
+      <header class="post-header">
+         
+        <div class="header_wrap ">       
+          
+          
+            <h1 class="post-title" itemprop="name headline">JavaScript变量的作用域和闭包</h1>
+          
+
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">发表于</span>
+                
+                <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-14T06:00:00+08:00">
+                  2017-06-14
+                </time>
+              
+
+              
+
+              
+            </span>
+
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">分类于</span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/study-notes/" itemprop="url" rel="index">
+                      <span itemprop="name">study_notes</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+            
+
+            
+
+            
+
+            
+
+          </div>
+        </div>
+         
+      </header>
+    
+     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+            
+      <p><img src="/images/html/cw/14.jpg" alt="image"></p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><blockquote>
+<p>变量作用域可分为：”全局变量”和”局部变量”</p>
+</blockquote>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><blockquote>
+<p>全局变量可在本页面代码中的任何位置使用。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;<span class="comment">//定义全局变量</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//在函数内部变量没加var定义的属于全局变量</span></div><div class="line">    a = <span class="number">10</span>;<span class="comment">//改变或是定义全局变量</span></div><div class="line">    <span class="built_in">window</span>.b = <span class="number">5</span>;<span class="comment">//定义全局变量</span></div><div class="line">&#125;</div><div class="line">show()</div><div class="line"><span class="built_in">console</span>.log(a)<span class="comment">//输出10</span></div><div class="line"><span class="built_in">console</span>.log(b)<span class="comment">//输出5</span></div></pre></td></tr></table></figure>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><blockquote>
+<p>局部变量:函数内部用var定义的变量只能在当前的函数内部使用。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">15</span>;<span class="comment">//全局变量:window.a</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;<span class="comment">//全局变量:window.a</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(a)<span class="comment">//第一次弹10 show1.a</span></div><div class="line">        a = <span class="number">5</span>;<span class="comment">//局部变量:show1.a</span></div><div class="line">        alert(a);<span class="comment">//第二次弹5 show1.a</span></div><div class="line">    &#125;</div><div class="line">    show2();</div><div class="line">    alert(a);<span class="comment">//第三次弹5  show1.a</span></div><div class="line">&#125;</div><div class="line">show1()</div><div class="line">alert(a)<span class="comment">//第四次弹15 window.a</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">15</span>;<span class="comment">//全局变量:window.a</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    a = <span class="number">10</span>;<span class="comment">//全局变量:window.a</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(a)<span class="comment">//第一次弹undefined show2.a</span></div><div class="line">        <span class="keyword">var</span> a = <span class="number">5</span>;<span class="comment">//局部变量:show2.a</span></div><div class="line">        alert(a);<span class="comment">//第二次弹5 show2.a</span></div><div class="line">    &#125;</div><div class="line">    show2();</div><div class="line">    alert(a);<span class="comment">//第三次弹10  window.a</span></div><div class="line">&#125;</div><div class="line">show1()</div><div class="line">alert(a)<span class="comment">//第四次弹10 window.a</span></div></pre></td></tr></table></figure>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><blockquote>
+<p>function函数就是一个闭包，闭包里面的变量是封闭的,函数外面不可以获取。JavaScript具有自动垃圾收集机制,一般情况函数执行完后变量也会在内存里释放。</p>
+</blockquote>
+<p>函数里面的变量不会影响外部的变量，多人开发也可以解决命名冲突的问题。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="comment">//函数自执行</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">5</span>;</div><div class="line">	<span class="built_in">console</span>.log(a)<span class="comment">//输出5</span></div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a)<span class="comment">//输出1</span></div></pre></td></tr></table></figure></p>
+<hr>
+<p>模块化开发时也可以避免命名冲突的问题<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//模块一</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	模块内容</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="comment">//模块二</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	模块内容</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="comment">//模块三</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	模块内容</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<hr>
+<p>之前说到函数变量外部不能使用，那模块内部的变量和功能怎么使用？其实函数内部的变量是有方法可以获取的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">5</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">        i += n;</div><div class="line">        <span class="keyword">return</span> i;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> b;</div><div class="line">&#125;   </div><div class="line"><span class="keyword">var</span> c = a();</div><div class="line">c(<span class="number">5</span>)</div><div class="line">alert(c(<span class="number">5</span>))<span class="comment">//15</span></div></pre></td></tr></table></figure>
+<p>以上a函数通过返回一个内部函数b与外部全局变量c关联后，通过全局变量c就可以控制或获取到函数a内部的变量了。</p>
+<p>由于以上方法会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题,可能导致内存泄露。</p>
+<p>内存泄漏：是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。</p>
+<h2 id="eval-函数"><a href="#eval-函数" class="headerlink" title="eval() 函数"></a>eval() 函数</h2><blockquote>
+<p>eval() 函数可将字符串转换为代码执行，并返回一个或多个值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">"(function()&#123;a = 5;&#125;)"</span>;</div><div class="line">fn = <span class="built_in">eval</span>(str);</div><div class="line">fn()</div><div class="line"><span class="built_in">console</span>.log(a)<span class="comment">//输出5</span></div></pre></td></tr></table></figure>
+<p>如果eval()的参数不是字符串，那么eval()将直接返回参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="number">1</span>))<span class="comment">//输出1</span></div></pre></td></tr></table></figure>
+<p>如果eval()的参数是字符串，那么eval()将这个字符串解析成代码后进行执行，并返回最后一行代码执行的结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"var a=5;a"</span>))<span class="comment">//输出5</span></div></pre></td></tr></table></figure>
+<p>如果字符串无法解析成合法的代码，eval()将抛出错误。</p>
+
+    </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/13/html/cw/13/" rel="next" title="JavaScript字符串和数组的常用方法">
+                <i class="fa fa-chevron-left"></i> JavaScript字符串和数组的常用方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/15/html/cw/15/" rel="prev" title="JavaScript定时器、Date对象和Math对象">
+                JavaScript定时器、Date对象和Math对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qrcode.jpg"
+               alt="前端实训" />
+          <p class="site-author-name" itemprop="name">前端实训</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用域"><span class="nav-number">1.</span> <span class="nav-text">变量的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">1.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部变量"><span class="nav-number">1.2.</span> <span class="nav-text">局部变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval-函数"><span class="nav-number">3.</span> <span class="nav-text">eval() 函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端实训-广州宣恒科技有限公司版权所有</span>
+  &nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备17034306号-4</a>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

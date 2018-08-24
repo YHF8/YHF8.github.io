@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>元素移动</title>
+<style type="text/css">
+div{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 0;
+}
+</style>
+</head>
+<body>
+	<div></div>
+</body>
+<script type="text/javascript">
+// 获取元素DIV
+var div = document.querySelector("div");
+var x = 0;//定义x变量用于控制DIVx轴移动
+var timer = setInterval(function () {
+	x += 2;//每帧移动2像素
+	if (x>=200) {//判断移到200像素的位置
+		clearInterval(timer);//停止定时器
+	}
+	//改变DIV样式left的位置
+	div.style.left = x+"px";
+},1000/60)//计算每秒60帧的速度
+
+</script>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="字符串常用方法indexOf() indexOf方法可返回某个指定的字符串值在字符串中首次出现的位置,没找到则为-1。  1234//indexOf(&quot;查找的内容&quot;,&quot;从哪个位置开始查找&quot;)var str = &quot;abcdefg&quot;;console.log(str.indexOf(&quot;c&quot;))//输出2console.log(str.indexOf(&quot;c&quot;,3))//输出-1 substr() sub">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript字符串和数组的常用方法">
+<meta property="og:url" content="http://yoursite.com/2017/06/13/html/cw/13/index.html">
+<meta property="og:site_name" content="前端实训">
+<meta property="og:description" content="字符串常用方法indexOf() indexOf方法可返回某个指定的字符串值在字符串中首次出现的位置,没找到则为-1。  1234//indexOf(&quot;查找的内容&quot;,&quot;从哪个位置开始查找&quot;)var str = &quot;abcdefg&quot;;console.log(str.indexOf(&quot;c&quot;))//输出2console.log(str.indexOf(&quot;c&quot;,3))//输出-1 substr() sub">
+<meta property="og:image" content="http://yoursite.com/images/html/cw/13.jpg">
+<meta property="og:updated_time" content="2017-06-30T14:28:45.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript字符串和数组的常用方法">
+<meta name="twitter:description" content="字符串常用方法indexOf() indexOf方法可返回某个指定的字符串值在字符串中首次出现的位置,没找到则为-1。  1234//indexOf(&quot;查找的内容&quot;,&quot;从哪个位置开始查找&quot;)var str = &quot;abcdefg&quot;;console.log(str.indexOf(&quot;c&quot;))//输出2console.log(str.indexOf(&quot;c&quot;,3))//输出-1 substr() sub">
+<meta name="twitter:image" content="http://yoursite.com/images/html/cw/13.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/13/html/cw/13/"/>
+
+
+
+
+
+  <title>JavaScript字符串和数组的常用方法 | 前端实训</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端实训</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study-notes">
+          <a href="/categories/study-notes/" rel="section">
+            
+            学习笔记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+      <div class="tags">
+        <ul>
+	
+		<li><a href="/tags/html/" rel="tag"> html</a></li>
+	
+		<li><a href="/tags/javascript/" rel="tag"> javascript</a></li>
+	
+		<li><a href="/tags/css/" rel="tag"> css</a></li>
+	
+
+
+
+        </ul>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal  " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/13/html/cw/13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="前端实训">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/qrcode.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端实训">
+    </span>
+
+    
+      <header class="post-header">
+         
+        <div class="header_wrap ">       
+          
+          
+            <h1 class="post-title" itemprop="name headline">JavaScript字符串和数组的常用方法</h1>
+          
+
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">发表于</span>
+                
+                <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T06:00:00+08:00">
+                  2017-06-13
+                </time>
+              
+
+              
+
+              
+            </span>
+
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">分类于</span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/study-notes/" itemprop="url" rel="index">
+                      <span itemprop="name">study_notes</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+            
+
+            
+
+            
+
+            
+
+          </div>
+        </div>
+         
+      </header>
+    
+     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+            
+      <p><img src="/images/html/cw/13.jpg" alt="image"></p>
+<h2 id="字符串常用方法"><a href="#字符串常用方法" class="headerlink" title="字符串常用方法"></a>字符串常用方法</h2><h3 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h3><blockquote>
+<p>indexOf方法可返回某个指定的字符串值在字符串中首次出现的位置,没找到则为-1。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//indexOf("查找的内容","从哪个位置开始查找")</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.indexOf(<span class="string">"c"</span>))<span class="comment">//输出2</span></div><div class="line"><span class="built_in">console</span>.log(str.indexOf(<span class="string">"c"</span>,<span class="number">3</span>))<span class="comment">//输出-1</span></div></pre></td></tr></table></figure>
+<h3 id="substr"><a href="#substr" class="headerlink" title="substr()"></a>substr()</h3><blockquote>
+<p>substr方法可在字符串中截取指定的位置和长度</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//substr("截取的开始位置","截取的长度")</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">2</span>));<span class="comment">//输出cdefg</span></div><div class="line"><span class="built_in">console</span>.log(str.substr(<span class="number">2</span>,<span class="number">2</span>))<span class="comment">//输出cd</span></div></pre></td></tr></table></figure>
+<h3 id="substring"><a href="#substring" class="headerlink" title="substring()"></a>substring()</h3><blockquote>
+<p>substring方法可在字符串中截取指定的开始位置和结束位置</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//substring("截取的开始位置","截取的结束位置")</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">2</span>));<span class="comment">//输出cdefg</span></div><div class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">2</span>,<span class="number">4</span>))<span class="comment">//输出cd</span></div><div class="line"><span class="built_in">console</span>.log(str.substring(<span class="number">4</span>,<span class="number">2</span>))<span class="comment">//输出cd</span></div></pre></td></tr></table></figure>
+<h3 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h3><blockquote>
+<p>用于把一个字符串分割成字符串数组。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//split("指定的内容作为分割点")</span></div><div class="line"><span class="keyword">var</span> str = <span class="string">"abcdefg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.split(<span class="string">""</span>));</div><div class="line"><span class="comment">//输出["a", "b", "c", "d", "e", "f", "g"]</span></div><div class="line"><span class="built_in">console</span>.log(str.split(<span class="string">"c"</span>));</div><div class="line"><span class="comment">//输出["ab", "defg"]</span></div></pre></td></tr></table></figure>
+<h3 id="toLowerCase"><a href="#toLowerCase" class="headerlink" title="toLowerCase()"></a>toLowerCase()</h3><blockquote>
+<p>用于把一个字符串变成小写</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"aBcDeFg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.toLowerCase())<span class="comment">//输出abcdefg</span></div></pre></td></tr></table></figure>
+<h3 id="toUpperCase"><a href="#toUpperCase" class="headerlink" title="toUpperCase()"></a>toUpperCase()</h3><blockquote>
+<p>用于把一个字符串变成大写</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">"aBcDeFg"</span>;</div><div class="line"><span class="built_in">console</span>.log(str.toUpperCase())<span class="comment">//输出ABCDEFG</span></div></pre></td></tr></table></figure>
+<h2 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h2><h3 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h3><blockquote>
+<p>把数组转换成一个用符号连接的字符串</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">""</span>))<span class="comment">//输出abcd</span></div><div class="line"><span class="built_in">console</span>.log(arr.join(<span class="string">"-"</span>))<span class="comment">//输出a-b-c-d</span></div></pre></td></tr></table></figure>
+<h3 id="shift"><a href="#shift" class="headerlink" title="shift()"></a>shift()</h3><blockquote>
+<p>删除并返回数组的第一个元素</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.shift())<span class="comment">//输出a</span></div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出[b","c","d"]</span></div></pre></td></tr></table></figure>
+<h3 id="unshift"><a href="#unshift" class="headerlink" title="unshift()"></a>unshift()</h3><blockquote>
+<p>向数组的开头添加一个或更多元素，并返回新的长度。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.unshift(<span class="number">1</span>))<span class="comment">//输出5</span></div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["1","a","b","c","d"]</span></div></pre></td></tr></table></figure>
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><blockquote>
+<p>删除并返回数组的最后一个元素</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.pop())<span class="comment">//输出d</span></div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["a","b","c"]</span></div></pre></td></tr></table></figure>
+<h3 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h3><blockquote>
+<p>向数组的末尾添加一个或更多元素，并返回新的长度。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.push(<span class="number">1</span>))<span class="comment">//输出5</span></div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["a","b","c","d","1"]</span></div></pre></td></tr></table></figure>
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><blockquote>
+<p>合并两个或更多的数组，并返回结果。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr1 = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>];</div><div class="line"><span class="keyword">var</span> arr2 = [<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>];</div><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line">arr = arr.concat(arr1,arr2)</div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["a","b","c","d","e","f"]</span></div></pre></td></tr></table></figure>
+<h3 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h3><blockquote>
+<p>获取数组中数据，需指定位置和数量。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.slice(<span class="number">2</span>))<span class="comment">//输出["c","d","e"]</span></div><div class="line"><span class="built_in">console</span>.log(arr.slice(<span class="number">1</span>,<span class="number">3</span>))<span class="comment">//输出[b","c"]</span></div></pre></td></tr></table></figure>
+<h3 id="splice"><a href="#splice" class="headerlink" title="splice()"></a>splice()</h3><blockquote>
+<p>删除元素，并向数组添加新元素,返回删除的内容。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//splice("位置","删除数量","添加的内容")</span></div><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.splice(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"k"</span>))<span class="comment">//输出c (删除)</span></div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["a","b","k","d","e"]</span></div></pre></td></tr></table></figure>
+<h3 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h3><blockquote>
+<p>对数组中的元素进行反序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>,<span class="string">"e"</span>];	arr.reverse();</div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//输出["e","d","c","b","a"]</span></div></pre></td></tr></table></figure>
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h3><blockquote>
+<p>对数组的元素进行排序</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">4</span>];</div><div class="line"><span class="comment">//按顺序排列</span></div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> a-b;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//[1,2,3,4,5]</span></div><div class="line"><span class="comment">//按倒序排列</span></div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> b-a;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(arr)<span class="comment">//[5,4,3,2,1]</span></div></pre></td></tr></table></figure>
+    </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/html/cw/12/" rel="next" title="JavaScript函数">
+                <i class="fa fa-chevron-left"></i> JavaScript函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/14/html/cw/14/" rel="prev" title="JavaScript变量的作用域和闭包">
+                JavaScript变量的作用域和闭包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qrcode.jpg"
+               alt="前端实训" />
+          <p class="site-author-name" itemprop="name">前端实训</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串常用方法"><span class="nav-number">1.</span> <span class="nav-text">字符串常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#indexOf"><span class="nav-number">1.1.</span> <span class="nav-text">indexOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#substr"><span class="nav-number">1.2.</span> <span class="nav-text">substr()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#substring"><span class="nav-number">1.3.</span> <span class="nav-text">substring()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split"><span class="nav-number">1.4.</span> <span class="nav-text">split()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toLowerCase"><span class="nav-number">1.5.</span> <span class="nav-text">toLowerCase()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toUpperCase"><span class="nav-number">1.6.</span> <span class="nav-text">toUpperCase()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组常用方法"><span class="nav-number">2.</span> <span class="nav-text">数组常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">2.1.</span> <span class="nav-text">join()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shift"><span class="nav-number">2.2.</span> <span class="nav-text">shift()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unshift"><span class="nav-number">2.3.</span> <span class="nav-text">unshift()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pop"><span class="nav-number">2.4.</span> <span class="nav-text">pop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push"><span class="nav-number">2.5.</span> <span class="nav-text">push()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#concat"><span class="nav-number">2.6.</span> <span class="nav-text">concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice"><span class="nav-number">2.7.</span> <span class="nav-text">slice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splice"><span class="nav-number">2.8.</span> <span class="nav-text">splice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reverse"><span class="nav-number">2.9.</span> <span class="nav-text">reverse()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort"><span class="nav-number">2.10.</span> <span class="nav-text">sort()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端实训-广州宣恒科技有限公司版权所有</span>
+  &nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备17034306号-4</a>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	我是A页面
+	<a href="b.html">B页面</a>
+	<input type="button" value="前进">
+</body>
+<script type="text/javascript">
+var input = document.querySelector("input");
+input.onclick = function () {
+	// history.forward() 
+	history.go(1)
+}
+</script>
+</html>
+
+
+
