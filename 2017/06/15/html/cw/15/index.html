@@ -1,0 +1,702 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="定时器一次性定时器123setTimeout(function  () &amp;#123;	alert(&quot;这是一次行定时器，只执行1次&quot;);&amp;#125;,1000) 1234567891011121314var timer = null;function timeFn () &amp;#123;    timer = setTimeout(function  () &amp;#123;    	alert(&quot;这是一次">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript定时器、Date对象和Math对象">
+<meta property="og:url" content="http://yoursite.com/2017/06/15/html/cw/15/index.html">
+<meta property="og:site_name" content="前端实训">
+<meta property="og:description" content="定时器一次性定时器123setTimeout(function  () &amp;#123;	alert(&quot;这是一次行定时器，只执行1次&quot;);&amp;#125;,1000) 1234567891011121314var timer = null;function timeFn () &amp;#123;    timer = setTimeout(function  () &amp;#123;    	alert(&quot;这是一次">
+<meta property="og:image" content="http://yoursite.com/images/html/cw/15.jpg">
+<meta property="og:updated_time" content="2017-06-30T14:29:12.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript定时器、Date对象和Math对象">
+<meta name="twitter:description" content="定时器一次性定时器123setTimeout(function  () &amp;#123;	alert(&quot;这是一次行定时器，只执行1次&quot;);&amp;#125;,1000) 1234567891011121314var timer = null;function timeFn () &amp;#123;    timer = setTimeout(function  () &amp;#123;    	alert(&quot;这是一次">
+<meta name="twitter:image" content="http://yoursite.com/images/html/cw/15.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/15/html/cw/15/"/>
+
+
+
+
+
+  <title>JavaScript定时器、Date对象和Math对象 | 前端实训</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端实训</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study-notes">
+          <a href="/categories/study-notes/" rel="section">
+            
+            学习笔记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+      <div class="tags">
+        <ul>
+	
+		<li><a href="/tags/html/" rel="tag"> html</a></li>
+	
+		<li><a href="/tags/javascript/" rel="tag"> javascript</a></li>
+	
+		<li><a href="/tags/css/" rel="tag"> css</a></li>
+	
+
+
+
+        </ul>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal  " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/html/cw/15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="前端实训">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/qrcode.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端实训">
+    </span>
+
+    
+      <header class="post-header">
+         
+        <div class="header_wrap ">       
+          
+          
+            <h1 class="post-title" itemprop="name headline">JavaScript定时器、Date对象和Math对象</h1>
+          
+
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">发表于</span>
+                
+                <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T06:00:00+08:00">
+                  2017-06-15
+                </time>
+              
+
+              
+
+              
+            </span>
+
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">分类于</span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/study-notes/" itemprop="url" rel="index">
+                      <span itemprop="name">study_notes</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+            
+
+            
+
+            
+
+            
+
+          </div>
+        </div>
+         
+      </header>
+    
+     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+            
+      <p><img src="/images/html/cw/15.jpg" alt="image"></p>
+<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><h3 id="一次性定时器"><a href="#一次性定时器" class="headerlink" title="一次性定时器"></a>一次性定时器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>  (<span class="params"></span>) </span>&#123;</div><div class="line">	alert(<span class="string">"这是一次行定时器，只执行1次"</span>);</div><div class="line">&#125;,<span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> timer = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeFn</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span>  (<span class="params"></span>) </span>&#123;</div><div class="line">    	alert(<span class="string">"这是一次行定时器，也可以不断执行"</span>);</div><div class="line">    	timeFn();</div><div class="line">    &#125;,<span class="number">1000</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">timeFn()<span class="comment">//执行函数</span></div><div class="line"></div><div class="line"><span class="comment">//点击页面时停止定时器</span></div><div class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    clearTimeout(timer)<span class="comment">//停止一次性定时器</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="循环定时器"><a href="#循环定时器" class="headerlink" title="循环定时器"></a>循环定时器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span>  (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"循环定时器"</span>);</div><div class="line">    i++;<span class="comment">//每循环一次加1</span></div><div class="line">    <span class="keyword">if</span> (i&gt;<span class="number">5</span>) &#123;</div><div class="line">        <span class="comment">//判断执行5次循环后停止循环定时器</span></div><div class="line">    	clearInterval(timer);</div><div class="line">    &#125;;</div><div class="line">&#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<h2 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h2><blockquote>
+<p>Date 对象用于处理日期和时间。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();<span class="comment">//创建时间对象，当前时间</span></div><div class="line"><span class="comment">//var time = new Date(2017,5,15,10,30,0)//设置指定时间对象2017-6-15 10:30:00</span></div><div class="line"></div><div class="line"><span class="comment">//所有get开头的为获取方法</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"年:"</span>+time.getFullYear())</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"月:"</span>+time.getMonth())<span class="comment">//从0开始0-11</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"日:"</span>+time.getDate())</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"星期:"</span>+time.getDay())<span class="comment">//从0开始0-6，0是星期日</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"时:"</span>+time.getHours())</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"钟:"</span>+time.getMinutes())</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"秒:"</span>+time.getSeconds())</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"时间戳"</span>:+time.getTime())</div><div class="line"><span class="comment">//时间戳：是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数</span></div><div class="line"></div><div class="line"><span class="comment">//以上方法都有对应的设置set开头的方法</span></div><div class="line"><span class="comment">//如：</span></div><div class="line">time.setFullYear(<span class="number">2016</span>)<span class="comment">//把时间设置为2016年</span></div></pre></td></tr></table></figure>
+<p>结合定时器在页面上动态显示时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	<span class="keyword">var</span> str = time.getFullYear()+<span class="string">"年"</span>;</div><div class="line">	str += time.getMonth()+<span class="string">"月"</span>;</div><div class="line">	str += time.getDate()+<span class="string">"日 "</span>;</div><div class="line">	str += time.getHours()+<span class="string">":"</span>;</div><div class="line">	str += time.getMinutes()+<span class="string">":"</span>;</div><div class="line">	str += time.getSeconds();</div><div class="line">	<span class="built_in">document</span>.body.innerText = str;</div><div class="line">&#125;,<span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<h2 id="Math对象"><a href="#Math对象" class="headerlink" title="Math对象"></a>Math对象</h2><blockquote>
+<p>Math 对象用于执行数学任务。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//输出Math,可以查看所以属性和方法</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>);</div><div class="line"></div><div class="line"><span class="comment">//常用方法</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"绝对值："</span>+<span class="built_in">Math</span>.abs(<span class="number">2</span><span class="number">-5</span>))<span class="comment">//输出3</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"最小值："</span>+<span class="built_in">Math</span>.min(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>))<span class="comment">//输出1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"最大值："</span>+<span class="built_in">Math</span>.max(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">4</span>))<span class="comment">//输出5</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"向上取整："</span>+<span class="built_in">Math</span>.ceil(<span class="number">3.3</span>))<span class="comment">//输出4</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"向下取整："</span>+<span class="built_in">Math</span>.floor(<span class="number">3.3</span>))<span class="comment">//输出3</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"四舍五入："</span>+<span class="built_in">Math</span>.round(<span class="number">3.3</span>))<span class="comment">//输出3</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"随机数："</span>+<span class="built_in">Math</span>.random())<span class="comment">//0-1之间,不包括0和1</span></div></pre></td></tr></table></figure>
+<p>自定义随机数函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//根据最大最小值的范围计算随机数的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">rndFn</span> (<span class="params">min,max</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*(max-min))+min;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(rndFn(<span class="number">1</span>,<span class="number">5</span>))<span class="comment">//获取1-5的随机数</span></div></pre></td></tr></table></figure>
+<p>随机排列</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">Math</span>.random()<span class="number">-0.5</span>;</div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(arr)</div></pre></td></tr></table></figure>
+
+    </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/14/html/cw/14/" rel="next" title="JavaScript变量的作用域和闭包">
+                <i class="fa fa-chevron-left"></i> JavaScript变量的作用域和闭包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/18/html/cw/16/" rel="prev" title="JavaScript动画">
+                JavaScript动画 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qrcode.jpg"
+               alt="前端实训" />
+          <p class="site-author-name" itemprop="name">前端实训</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定时器"><span class="nav-number">1.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一次性定时器"><span class="nav-number">1.1.</span> <span class="nav-text">一次性定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环定时器"><span class="nav-number">1.2.</span> <span class="nav-text">循环定时器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date对象"><span class="nav-number">2.</span> <span class="nav-text">Date对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math对象"><span class="nav-number">3.</span> <span class="nav-text">Math对象</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端实训-广州宣恒科技有限公司版权所有</span>
+  &nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备17034306号-4</a>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

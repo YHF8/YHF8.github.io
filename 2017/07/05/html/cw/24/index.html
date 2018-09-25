@@ -1,0 +1,814 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="显示隐藏显示隐藏是同过改变元素的display属性，设置了时间后动画是通过改变元素的宽高和透明度。  显示：show(speed,callback) 隐藏：hide(speed,callback) 显示/隐藏：toggle(speed,callback)   speed：动画执行时间(默认400毫秒)，如果没有设置时间则没有动画效果。callback：动画结束后的回调函数  控制DIV显示隐藏例">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery 动画">
+<meta property="og:url" content="http://yoursite.com/2017/07/05/html/cw/24/index.html">
+<meta property="og:site_name" content="前端实训">
+<meta property="og:description" content="显示隐藏显示隐藏是同过改变元素的display属性，设置了时间后动画是通过改变元素的宽高和透明度。  显示：show(speed,callback) 隐藏：hide(speed,callback) 显示/隐藏：toggle(speed,callback)   speed：动画执行时间(默认400毫秒)，如果没有设置时间则没有动画效果。callback：动画结束后的回调函数  控制DIV显示隐藏例">
+<meta property="og:image" content="http://yoursite.com/images/html/cw/24.jpg">
+<meta property="og:updated_time" content="2017-07-05T09:50:55.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery 动画">
+<meta name="twitter:description" content="显示隐藏显示隐藏是同过改变元素的display属性，设置了时间后动画是通过改变元素的宽高和透明度。  显示：show(speed,callback) 隐藏：hide(speed,callback) 显示/隐藏：toggle(speed,callback)   speed：动画执行时间(默认400毫秒)，如果没有设置时间则没有动画效果。callback：动画结束后的回调函数  控制DIV显示隐藏例">
+<meta name="twitter:image" content="http://yoursite.com/images/html/cw/24.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/05/html/cw/24/"/>
+
+
+
+
+
+  <title>jQuery 动画 | 前端实训</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端实训</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study-notes">
+          <a href="/categories/study-notes/" rel="section">
+            
+            学习笔记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+      <div class="tags">
+        <ul>
+	
+		<li><a href="/tags/html/" rel="tag"> html</a></li>
+	
+		<li><a href="/tags/javascript/" rel="tag"> javascript</a></li>
+	
+		<li><a href="/tags/css/" rel="tag"> css</a></li>
+	
+
+
+
+        </ul>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal  " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/05/html/cw/24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="前端实训">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/qrcode.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端实训">
+    </span>
+
+    
+      <header class="post-header">
+         
+        <div class="header_wrap ">       
+          
+          
+            <h1 class="post-title" itemprop="name headline">jQuery 动画</h1>
+          
+
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">发表于</span>
+                
+                <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-05T06:00:00+08:00">
+                  2017-07-05
+                </time>
+              
+
+              
+
+              
+            </span>
+
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">分类于</span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/study-notes/" itemprop="url" rel="index">
+                      <span itemprop="name">study_notes</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+            
+
+            
+
+            
+
+            
+
+          </div>
+        </div>
+         
+      </header>
+    
+     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+            
+      <p><img src="/images/html/cw/24.jpg" alt="image"></p>
+<h2 id="显示隐藏"><a href="#显示隐藏" class="headerlink" title="显示隐藏"></a>显示隐藏</h2><p>显示隐藏是同过改变元素的display属性，设置了时间后动画是通过改变元素的宽高和透明度。</p>
+<ul>
+<li>显示：show(speed,callback)</li>
+<li>隐藏：hide(speed,callback)</li>
+<li>显示/隐藏：toggle(speed,callback)</li>
+</ul>
+<blockquote>
+<p>speed：动画执行时间(默认400毫秒)，如果没有设置时间则没有动画效果。<br>callback：动画结束后的回调函数</p>
+</blockquote>
+<p>控制DIV显示隐藏例子，结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"show"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"hide"</span>&gt;</span>隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是DIV<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $div = $(<span class="string">"div"</span>);</div><div class="line">$(<span class="string">".show"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $div.show();<span class="comment">//显示DIV，无动画</span></div><div class="line">&#125;)</div><div class="line">$(<span class="string">".hide"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $div.hide(<span class="number">800</span>);<span class="comment">//隐藏DIV，有动画</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>利用toggle方法可使用一个按钮控制显示隐藏例子，结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>显示隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是DIV<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $div = $(<span class="string">"div"</span>);</div><div class="line">$(<span class="string">"button"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $div.toggle();<span class="comment">//显示隐藏</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h2><p>淡入淡出动画效果是通过改变元素样式的透明度</p>
+<ul>
+<li>fadeIn(speed,callback)</li>
+<li>fadeOut(speed,callback)</li>
+<li>fadeToggle(speed,callback)</li>
+<li>fadeTo(speed,opacity,callback)</li>
+</ul>
+<blockquote>
+<p>speed：动画执行时间(默认400毫秒)<br>callback：动画结束后的回调函数</p>
+</blockquote>
+<p>控制DIV淡入淡出例子，结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"show"</span>&gt;</span>淡入显示<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"hide"</span>&gt;</span>淡出隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是DIV<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $div = $(<span class="string">"div"</span>);</div><div class="line">$(<span class="string">".show"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $div.fadeIn();<span class="comment">//淡入显示</span></div><div class="line">    <span class="comment">//$div.fadeToggle()//淡入淡出切换</span></div><div class="line">&#125;)</div><div class="line">$(<span class="string">".hide"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//$div.fadeOut();//淡出隐藏</span></div><div class="line">    <span class="comment">//$div.fadeToggle()//淡入淡出切换</span></div><div class="line">    $div.fadeTo(<span class="number">500</span>,<span class="number">0.5</span>)<span class="comment">//指定淡入的透明度值</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><p>滑动效果是改变元素的高度来实现的。</p>
+<ul>
+<li>slideDown(speed,callback)</li>
+<li>slideUp(speed,callback)</li>
+<li>slideToggle(speed,callback)</li>
+</ul>
+<blockquote>
+<p>speed：动画执行时间(默认400毫秒)<br>callback：动画结束后的回调函数</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"show"</span>&gt;</span>滑动显示<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"hide"</span>&gt;</span>滑动隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是DIV<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JQ代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $div = $(<span class="string">"div"</span>);</div><div class="line">$(<span class="string">".show"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//滑动显示(慢慢从0增加高度显示)</span></div><div class="line">    $div.slideDown();</div><div class="line">    <span class="comment">//$div.slideToggle()//滑动显示隐藏切换</span></div><div class="line">&#125;)</div><div class="line">$(<span class="string">".hide"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="comment">//滑动隐藏(慢慢改变高度为0隐藏)</span></div><div class="line">    $div.slideUp();</div><div class="line">    <span class="comment">//$div.slideToggle()//滑动显示隐藏切换</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a>自定义动画</h2><p>animate方法可创建自定义的动画。</p>
+<p>animate({params},speed,callback)</p>
+<blockquote>
+<p>{params}：设置执行动画的css属性<br>speed：动画执行时间(默认400毫秒)<br>callback：动画结束后的回调函数</p>
+</blockquote>
+<p>给DIV执行改变宽高和位置的动画例子，结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background: red;</div><div class="line">    position: absolute;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$div.animate(&#123;<span class="string">"width"</span>:<span class="number">400</span>&#125;,<span class="number">1000</span>)</div><div class="line">$div.animate(&#123;<span class="string">"height"</span>:<span class="number">400</span>&#125;,<span class="number">1000</span>)</div><div class="line">$div.animate(&#123;<span class="string">"left"</span>:<span class="number">400</span>&#125;,<span class="number">1000</span>)</div><div class="line">$div.animate(&#123;<span class="string">"top"</span>:<span class="number">400</span>&#125;,<span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<h2 id="动画队列"><a href="#动画队列" class="headerlink" title="动画队列"></a>动画队列</h2><ul>
+<li>queue()：显示或操作在匹配元素上执行的函数队列</li>
+<li>dequeue()：从队列最前端移除一个队列函数，并执行他。</li>
+<li>clearQueue()：清空对象上尚未执行的所有队列</li>
+<li>delay()：延时队列,用来延迟下一个队列动画的执行。</li>
+<li>stop()：停止所有在指定元素上正在运行的动画。</li>
+<li>finish()：停止当前正在运行的动画，删除所有排队的动画，并完成匹配元素所有的动画。</li>
+</ul>
+<p>结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background: red;</div><div class="line">    position: absolute;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">点前动画队列数量：<span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"start"</span>&gt;</span>动画开始<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"stop"</span>&gt;</span>动画停止<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"end"</span>&gt;</span>动画结束<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $start = $(<span class="string">".start"</span>);<span class="comment">//开始</span></div><div class="line"><span class="keyword">var</span> $stop = $(<span class="string">".stop"</span>);<span class="comment">//停止</span></div><div class="line"><span class="keyword">var</span> $end = $(<span class="string">".end"</span>);<span class="comment">//结束</span></div><div class="line"><span class="keyword">var</span> $div = $(<span class="string">"div"</span>);</div><div class="line"><span class="comment">//50毫秒更新显示当前队列数</span></div><div class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = $div.queue().length;<span class="comment">//动画队列数量</span></div><div class="line">    $(<span class="string">"span"</span>).text(len)<span class="comment">//在页面span标签显示当前队列数量</span></div><div class="line">&#125;,<span class="number">50</span>)</div><div class="line">$start.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $div.fadeOut()</div><div class="line">        .slideDown()</div><div class="line">        .animate(&#123;<span class="attr">width</span>:<span class="number">200</span>&#125;,<span class="number">1000</span>)</div><div class="line">        .animate(&#123;<span class="attr">height</span>:<span class="number">200</span>&#125;,<span class="number">1000</span>)</div><div class="line">        .delay(<span class="number">1000</span>)</div><div class="line">        .queue(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//自定义队列操作</span></div><div class="line">        	<span class="built_in">console</span>.log(<span class="string">"执行当前队列操作"</span>);		</div><div class="line">        	$div.dequeue();<span class="comment">//结束当前队列,执行下一个列队</span></div><div class="line">        &#125;)</div><div class="line">        .animate(&#123;<span class="attr">left</span>:<span class="number">200</span>&#125;,<span class="number">1000</span>)</div><div class="line">        .animate(&#123;<span class="attr">top</span>:<span class="number">200</span>&#125;,<span class="number">1000</span>)</div><div class="line">&#125;)</div><div class="line"><span class="comment">//点击停止动画</span></div><div class="line">$stop.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;	</div><div class="line">    <span class="comment">//stop没有参数就是停止当前动画</span></div><div class="line">    <span class="comment">//stop第一个true：设置结束全部列队</span></div><div class="line">    <span class="comment">//stop第二个true：瞬间完成当前动画</span></div><div class="line">    <span class="comment">// $div.stop(true);</span></div><div class="line">    </div><div class="line">    <span class="comment">//清除所有队列，继续执行完成当前动画</span></div><div class="line">    $div.clearQueue()</div><div class="line">&#125;)</div><div class="line">$end.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 停止当前正在运行的动画，删除所有排队的动画，并完成匹配元素所有的动画。</span></div><div class="line">    $div.finish();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="easing插件"><a href="#easing插件" class="headerlink" title="easing插件"></a>easing插件</h2><p>easing插件使用方法<br>需要在引入jQuery之后引入jquery.easing.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CDN地址</div><div class="line">http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js</div></pre></td></tr></table></figure>
+<p>easing效果参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>linear</td>
+<td>swing</td>
+<td>jswing </td>
+</tr>
+<tr>
+<td>easeInQuad</td>
+<td>easeOutQuad</td>
+<td>easeInOutQuad </td>
+</tr>
+<tr>
+<td>easeInCubic</td>
+<td>easeOutCubic</td>
+<td>easeInOutCubic </td>
+</tr>
+<tr>
+<td>easeInQuart</td>
+<td>easeOutQuart</td>
+<td>easeInOutQuart </td>
+</tr>
+<tr>
+<td>easeInQuint</td>
+<td>easeOutQuint</td>
+<td>easeInOutQuint </td>
+</tr>
+<tr>
+<td>easeInExpo</td>
+<td>easeOutExpo</td>
+<td>easeInOutExpo </td>
+</tr>
+<tr>
+<td>easeInSine</td>
+<td>easeOutSine</td>
+<td>easeInOutSine </td>
+</tr>
+<tr>
+<td>easeInCirc</td>
+<td>easeOutCirc</td>
+<td>easeInOutCirc </td>
+</tr>
+<tr>
+<td>easeInElastic</td>
+<td>easeOutElastic</td>
+<td>easeInOutElastic </td>
+</tr>
+<tr>
+<td>easeInBack</td>
+<td>easeOutBack</td>
+<td>easeInOutBack </td>
+</tr>
+<tr>
+<td>easeInBounce</td>
+<td>easeOutBounce</td>
+<td>easeInOutBounce</td>
+</tr>
+</tbody>
+</table>
+<p>例子，结构：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background: red;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>这是div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JQ代码：</p>
+<p>使用方法一<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div"</span>).animate(&#123;<span class="attr">left</span>:<span class="number">400</span>&#125;,<span class="number">1000</span>,<span class="string">"easeOutBounce"</span>);</div></pre></td></tr></table></figure></p>
+<p>使用方法二<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div"</span>).animate(&#123;<span class="attr">left</span>:<span class="number">400</span>&#125;,&#123;</div><div class="line">	<span class="attr">easing</span>:<span class="string">"easeOutBounce"</span>,<span class="comment">//动画效果参数</span></div><div class="line">	duration:<span class="number">1000</span>,<span class="comment">//动画时间</span></div><div class="line">	complete:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//动画结束回调函数</span></div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"动画结束"</span>)</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>使用方法三<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div"</span>).animate(&#123;</div><div class="line">	<span class="attr">left</span>:[<span class="number">400</span>,<span class="string">"easeOutQuad"</span>],</div><div class="line">	<span class="attr">top</span>:[<span class="number">400</span>,<span class="string">"easeInQuad"</span>],</div><div class="line">&#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure></p>
+
+    </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/04/html/cw/23/" rel="next" title="jQuery DOM操作">
+                <i class="fa fa-chevron-left"></i> jQuery DOM操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/13/html/cw/25/" rel="prev" title="JavaScript 面向对象">
+                JavaScript 面向对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qrcode.jpg"
+               alt="前端实训" />
+          <p class="site-author-name" itemprop="name">前端实训</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示隐藏"><span class="nav-number">1.</span> <span class="nav-text">显示隐藏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#淡入淡出"><span class="nav-number">2.</span> <span class="nav-text">淡入淡出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动"><span class="nav-number">3.</span> <span class="nav-text">滑动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义动画"><span class="nav-number">4.</span> <span class="nav-text">自定义动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画队列"><span class="nav-number">5.</span> <span class="nav-text">动画队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#easing插件"><span class="nav-number">6.</span> <span class="nav-text">easing插件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端实训-广州宣恒科技有限公司版权所有</span>
+  &nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备17034306号-4</a>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

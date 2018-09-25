@@ -1,0 +1,946 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="事件对象 事件对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。  1234document.onclick = function  (e) &amp;#123;	var e = e || event;//兼容写法	console.log(e);//输出事件对象查看&amp;#125; 事件对象的一些属性和方法    属性/方法 描述     clientX 返回当事件被">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript事件">
+<meta property="og:url" content="http://yoursite.com/2017/06/27/html/cw/19/index.html">
+<meta property="og:site_name" content="前端实训">
+<meta property="og:description" content="事件对象 事件对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。  1234document.onclick = function  (e) &amp;#123;	var e = e || event;//兼容写法	console.log(e);//输出事件对象查看&amp;#125; 事件对象的一些属性和方法    属性/方法 描述     clientX 返回当事件被">
+<meta property="og:image" content="http://yoursite.com/images/html/cw/19.jpg">
+<meta property="og:updated_time" content="2017-06-30T14:30:14.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript事件">
+<meta name="twitter:description" content="事件对象 事件对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。  1234document.onclick = function  (e) &amp;#123;	var e = e || event;//兼容写法	console.log(e);//输出事件对象查看&amp;#125; 事件对象的一些属性和方法    属性/方法 描述     clientX 返回当事件被">
+<meta name="twitter:image" content="http://yoursite.com/images/html/cw/19.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/27/html/cw/19/"/>
+
+
+
+
+
+  <title>JavaScript事件 | 前端实训</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端实训</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-study-notes">
+          <a href="/categories/study-notes/" rel="section">
+            
+            学习笔记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+      <div class="tags">
+        <ul>
+	
+		<li><a href="/tags/html/" rel="tag"> html</a></li>
+	
+		<li><a href="/tags/javascript/" rel="tag"> javascript</a></li>
+	
+		<li><a href="/tags/css/" rel="tag"> css</a></li>
+	
+
+
+
+        </ul>
+
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal  " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/27/html/cw/19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="前端实训">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/qrcode.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端实训">
+    </span>
+
+    
+      <header class="post-header">
+         
+        <div class="header_wrap ">       
+          
+          
+            <h1 class="post-title" itemprop="name headline">JavaScript事件</h1>
+          
+
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">发表于</span>
+                
+                <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T06:34:14+08:00">
+                  2017-06-27
+                </time>
+              
+
+              
+
+              
+            </span>
+
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">分类于</span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/study-notes/" itemprop="url" rel="index">
+                      <span itemprop="name">study_notes</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+            
+
+            
+
+            
+
+            
+
+          </div>
+        </div>
+         
+      </header>
+    
+     
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+            
+      <p><img src="/images/html/cw/19.jpg" alt="image"></p>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><blockquote>
+<p>事件对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span>  (<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> e = e || event;<span class="comment">//兼容写法</span></div><div class="line">	<span class="built_in">console</span>.log(e);<span class="comment">//输出事件对象查看</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>事件对象的一些属性和方法</p>
+<table>
+<thead>
+<tr>
+<th>属性/方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clientX</td>
+<td>返回当事件被触发时，鼠标指针的水平坐标。</td>
+</tr>
+<tr>
+<td>clientY</td>
+<td>返回当事件被触发时，鼠标指针的垂直坐标。</td>
+</tr>
+<tr>
+<td>keyCode</td>
+<td>返回虚拟键盘码</td>
+</tr>
+<tr>
+<td>ctrlKey</td>
+<td>返回当事件被触发时，”CTRL” 键是否被按下。</td>
+</tr>
+<tr>
+<td>altKey</td>
+<td>返回当事件被触发时，”ALT” 是否被按下。</td>
+</tr>
+<tr>
+<td>shiftKey</td>
+<td>返回当事件被触发时，”SHIFT” 键是否被按下。</td>
+</tr>
+<tr>
+<td>currentTarget</td>
+<td>返回其事件监听器触发该事件的元素。</td>
+</tr>
+<tr>
+<td>target</td>
+<td>返回触发此事件的元素（事件的目标节点）。</td>
+</tr>
+<tr>
+<td>type</td>
+<td>返回当前 Event 对象表示的事件的名称。</td>
+</tr>
+<tr>
+<td>preventDefault()</td>
+<td>阻止默认事件。</td>
+</tr>
+<tr>
+<td>stopPropagation()</td>
+<td>阻止冒泡。</td>
+</tr>
+</tbody>
+</table>
+<p>一些兼容写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获得event对象兼容性写法 </span></div><div class="line"><span class="keyword">var</span> event = event || <span class="built_in">window</span>.event;</div><div class="line"><span class="comment">//获得target兼容型写法 </span></div><div class="line">event.target||event.srcElement</div><div class="line"><span class="comment">//阻止浏览器默认行为兼容性写法 </span></div><div class="line">event.preventDefault ? event.preventDefault() : (event.returnValue = <span class="literal">false</span>);</div><div class="line"><span class="comment">//阻止冒泡写法 </span></div><div class="line">event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = <span class="literal">true</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="委托事件"><a href="#委托事件" class="headerlink" title="委托事件"></a>委托事件</h2><blockquote>
+<p>事件委托：就是本来需要给多个子元素添加事件的，只要利用事件对象和事件冒泡，只给父级一个添加事件就相当于所有子元素都有了事件。</p>
+</blockquote>
+<p>结构<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>JavaScript<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>];</div><div class="line">ul.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> e = e || <span class="built_in">window</span>.event;</div><div class="line">	<span class="comment">//通过事件对象获取触发事件的子元素</span></div><div class="line">	<span class="keyword">var</span> li = e.target || e.srcElement;</div><div class="line">	li.style.background = <span class="string">"blue"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="事件绑定冒泡捕获"><a href="#事件绑定冒泡捕获" class="headerlink" title="事件绑定冒泡捕获"></a>事件绑定冒泡捕获</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addEventListener</td>
+<td>绑定事件</td>
+</tr>
+<tr>
+<td>removeEventListener</td>
+<td>移除事件</td>
+</tr>
+<tr>
+<td>attachEvent</td>
+<td>IE的绑定事件</td>
+</tr>
+<tr>
+<td>detachEvent</td>
+<td>IE的移除事件</td>
+</tr>
+</tbody>
+</table>
+<p>结构<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d1"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d2"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"d3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>javascript<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> aDiv = <span class="built_in">document</span>.querySelectorAll(<span class="string">"div"</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aDiv.length; i++) &#123;</div><div class="line">	aDiv[i].index = i;</div><div class="line">	<span class="comment">/*</span></div><div class="line">		绑定事件（监听事件）注意：不加on； 兼容ie8以上</div><div class="line">		第三个参数false:冒泡 true:捕获 默认false</div><div class="line">	*/</div><div class="line">	aDiv[i].addEventListener(<span class="string">"click"</span>,show,<span class="literal">false</span>)	</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>事件绑定兼容写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">attachEvent:IE绑定事件、注意：</div><div class="line">	1.默认就是冒泡，没有第3个参数</div><div class="line">	2.里面函数的this指向window</div><div class="line">*/</div><div class="line"><span class="comment">//绑定事件</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">on</span>(<span class="params">obj,type,fn</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (obj.addEventListener) &#123;</div><div class="line">		obj.addEventListener(type,fn)</div><div class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(obj.attachEvent)&#123;</div><div class="line">		obj.attachEvent(<span class="string">"on"</span>+type,fn)</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		obj[<span class="string">"on"</span>+type]=fn;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//移除事件</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">off</span>(<span class="params">obj,type,fn</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (obj.addEventListener) &#123;</div><div class="line">		obj.removeEventListener(type,fn)</div><div class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(obj.attachEvent)&#123;</div><div class="line">		obj.detachEvent(<span class="string">"on"</span>+type,fn)</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		obj[<span class="string">"on"</span>+type]=<span class="string">""</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>click</td>
+<td>鼠标单击</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>鼠标双击击</td>
+</tr>
+<tr>
+<td>mousedown</td>
+<td>鼠标被按下</td>
+</tr>
+<tr>
+<td>mouseup</td>
+<td>鼠标被松开</td>
+</tr>
+<tr>
+<td>mousemove</td>
+<td>鼠标移动</td>
+</tr>
+<tr>
+<td>contextmenu</td>
+<td>鼠标右键</td>
+</tr>
+<tr>
+<td>mouseout/mouseleave</td>
+<td>鼠标从某元素移开</td>
+</tr>
+<tr>
+<td>mouseover/mouseenter</td>
+<td>鼠标被移到某元素之上</td>
+</tr>
+</tbody>
+</table>
+<h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keydown</td>
+<td>键盘按下</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td>键盘释放</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td>键盘按下</td>
+</tr>
+</tbody>
+</table>
+<h2 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onfocus</td>
+<td>元素获得焦点</td>
+</tr>
+<tr>
+<td>onblur</td>
+<td>元素失去焦点</td>
+</tr>
+<tr>
+<td>submit</td>
+<td>表单提交</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>表单重置</td>
+</tr>
+<tr>
+<td>change</td>
+<td>当文本框内容改变且失去焦点后</td>
+</tr>
+<tr>
+<td>select</td>
+<td>选择文本框中的一个或多个字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="窗口事件"><a href="#窗口事件" class="headerlink" title="窗口事件"></a>窗口事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load</td>
+<td>加载完</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td>滚动条移动</td>
+</tr>
+<tr>
+<td>resize</td>
+<td>窗口大小改变</td>
+</tr>
+</tbody>
+</table>
+<h2 id="touch事件"><a href="#touch事件" class="headerlink" title="touch事件"></a>touch事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>touchstart</td>
+<td>当手指触摸屏幕时候触发</td>
+</tr>
+<tr>
+<td>touchmove</td>
+<td>当手指在屏幕上滑动的时候连续地触发</td>
+</tr>
+<tr>
+<td>touchend</td>
+<td>当手指从屏幕上离开的时候触发</td>
+</tr>
+<tr>
+<td>touchcancel</td>
+<td>当系统停止跟踪触摸的时候触发(如电话接入或者弹出信息)</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>手指拖动DIV<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">	<span class="selector-tag">div</span>&#123;</div><div class="line">		<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">		<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">		<span class="attribute">background</span>: red;</div><div class="line">		<span class="attribute">position</span>: absolute;</div><div class="line">	&#125;</div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">/*	</span></div><div class="line">	触屏事件</div><div class="line">	touchstart //手指触摸屏幕的时候触发的事件</div><div class="line">	touchmove //手指在屏幕移动的时候</div><div class="line">	touchend  //手指离开屏幕</div><div class="line">	e.touches //手指组对象（可以获取多个手指在屏幕里的信息）</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.querySelector(<span class="string">"div"</span>);</div><div class="line"><span class="keyword">var</span> dx = <span class="number">0</span>,dy = <span class="number">0</span>;</div><div class="line">div.addEventListener(<span class="string">"touchstart"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">	dx = e.touches[<span class="number">0</span>].clientX-div.offsetLeft;</div><div class="line">	dy = e.touches[<span class="number">0</span>].clientY-div.offsetTop;</div><div class="line"></div><div class="line">&#125;,<span class="literal">false</span>)</div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"touchmove"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> x = e.touches[<span class="number">0</span>].clientX-dx</div><div class="line">	<span class="keyword">var</span> y = e.touches[<span class="number">0</span>].clientY-dy</div><div class="line">	div.style.left = x +<span class="string">"px"</span>;</div><div class="line">	div.style.top = y + <span class="string">"px"</span>;</div><div class="line">&#125;)</div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"touchend"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"手指离开屏幕"</span>)</div><div class="line">&#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="设备事件"><a href="#设备事件" class="headerlink" title="设备事件"></a>设备事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceorientation</td>
+<td>设备的物理方向信息。</td>
+</tr>
+<tr>
+<td>devicemotion</td>
+<td>提供设备的加速信息。</td>
+</tr>
+</tbody>
+</table>
+<p>设备方向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//deviceorientation:设备方向</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'deviceorientation'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;		</div><div class="line">	<span class="built_in">document</span>.body.innerHTML = <span class="string">"alpha:"</span> + e.alpha + <span class="string">"&lt;br&gt; beta:"</span>+e.beta + <span class="string">"&lt;br&gt;gamma:"</span>+e.gamma</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>摇一摇<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> bX = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> bY = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> bZ = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> bTime = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> speed = <span class="number">0</span>;</div><div class="line"><span class="comment">//  devicemotion设备动作</span></div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.DeviceMotionEvent)&#123;</div><div class="line">	<span class="built_in">window</span>.addEventListener(<span class="string">"devicemotion"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">		<span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">if</span> (now-bTime&gt;<span class="number">100</span>) &#123;</div><div class="line">			<span class="keyword">var</span> motion = e.accelerationIncludingGravity;</div><div class="line">			<span class="keyword">var</span> x = <span class="built_in">parseInt</span>(motion.x);</div><div class="line">			<span class="keyword">var</span> y = <span class="built_in">parseInt</span>(motion.y);</div><div class="line">			<span class="keyword">var</span> z = <span class="built_in">parseInt</span>(motion.z);</div><div class="line">			<span class="comment">// document.body.innerHTML = "x:"+x+"&lt;br&gt;y:"+y+"&lt;br&gt;z:"+z;</span></div><div class="line">			speed += <span class="built_in">Math</span>.abs(x+y+z-bX-bY-bZ);</div><div class="line">			<span class="keyword">if</span> (speed&gt;<span class="number">1000</span>) &#123;</div><div class="line">				alert(<span class="string">"摇一摇了"</span>);</div><div class="line">				speed=<span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="built_in">document</span>.body.innerHTML = speed;</div><div class="line">			bX = x;</div><div class="line">			bY = y;</div><div class="line">			bZ = z;</div><div class="line">			bTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		&#125;		</div><div class="line">	&#125;)</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">	alert(<span class="string">"设备不支持摇一摇功能！"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+    </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/21/html/cw/18/" rel="next" title="JavaScript文档对象模型">
+                <i class="fa fa-chevron-left"></i> JavaScript文档对象模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/30/html/cw/20/" rel="prev" title="JavaScript鼠标滚轮事件">
+                JavaScript鼠标滚轮事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/qrcode.jpg"
+               alt="前端实训" />
+          <p class="site-author-name" itemprop="name">前端实训</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件对象"><span class="nav-number">1.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#委托事件"><span class="nav-number">2.</span> <span class="nav-text">委托事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件绑定冒泡捕获"><span class="nav-number">3.</span> <span class="nav-text">事件绑定冒泡捕获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标事件"><span class="nav-number">4.</span> <span class="nav-text">鼠标事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘事件"><span class="nav-number">5.</span> <span class="nav-text">键盘事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单事件"><span class="nav-number">6.</span> <span class="nav-text">表单事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗口事件"><span class="nav-number">7.</span> <span class="nav-text">窗口事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch事件"><span class="nav-number">8.</span> <span class="nav-text">touch事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备事件"><span class="nav-number">9.</span> <span class="nav-text">设备事件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">前端实训-广州宣恒科技有限公司版权所有</span>
+  &nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备17034306号-4</a>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

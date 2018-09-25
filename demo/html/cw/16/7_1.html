@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tween.js用法</title>
+	<style type="text/css">	
+	div{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div></div>
+</body>
+<script type="text/javascript" src="tween.js"></script>
+<script type="text/javascript">
+var div = document.querySelector("div");
+var start = 0;//开始位置
+var dis = 200;//移动的距离
+var T = 0;//帧数位置
+var endT = 1000/16.7;//总帧数
+var timer = setInterval(function () {
+	T++;//执行移动到下一帧
+	if (T>=endT) {//判断到了最后一帧
+		clearInterval(timer);//停止定时器
+	}
+	//根据Tween.js计算每一帧的位置
+	var l = Tween.Bounce.easeOut(T,start,dis,endT);
+	//设置DIV的left值位置
+	div.style.left = l + "px";
+},1000/60)//计算每秒60帧的速度
+
+
+</script>
+</html>
+
+
+

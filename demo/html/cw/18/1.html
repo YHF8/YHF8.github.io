@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.blue{
+		background: blue;
+	}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="blue">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+	<button>当前选中li的父节点</button><br>
+	<button>第一个子节点</button><br>
+	<button>最后一个子节点</button><br>
+	<button>上一个节点</button><br>
+	<button>下一个节点</button><br>
+
+</body>
+<script type="text/javascript">
+var btn = document.querySelectorAll("button");
+var ul = document.querySelector("ul");
+//获取ul的所有子节点
+var li = ul.children;
+var index = 0;
+function clearClass() {
+	for (var i = 0; i < li.length; i++) {
+		li[i].className = "";
+	}
+}
+// 当前选中li的父节点
+btn[0].onclick = function () {
+	alert(li[index].parentNode.nodeName)
+}
+// 第一个子节点
+btn[1].onclick = function () {
+	clearClass()
+	index = 0;
+	firstFn(ul).className = "blue";
+}
+// 最后一个子节点
+btn[2].onclick = function () {
+	clearClass()
+	index = li.length-1;
+	lastFn(ul).className = "blue";
+}
+// 上一个节点
+btn[3].onclick = function () {
+	if (index>0) {
+		clearClass()
+		previousFn(li[index]).className= "blue";
+		index = --index<0?0:index;
+	}	
+}
+// 下一个节点
+btn[4].onclick = function () {
+	if (index<li.length-1) {
+		clearClass()
+		nextFn(li[index]).className= "blue";
+		index = ++index>li.length-1?li.length-1:index;	
+	}
+}
+
+
+//返回下一个兄弟节点兼容写法的函数
+function nextFn(obj) {
+	return obj.nextElementSibling?obj.nextElementSibling:obj.nextSibling;
+}
+
+//返回上一个兄弟节点兼容写法的函数
+function previousFn(obj) {
+	return obj.previousElementSibling?obj.previousElementSibling:obj.previousSibling;
+}
+
+//返回第一个子节点兼容写法的函数
+function firstFn(obj) {
+	return obj.firstElementChild?obj.firstElementChild:obj.firstChild;
+}
+//返回最后一个子节点兼容写法的函数
+function lastFn(obj) {
+	return obj.lastElementChild?obj.lastElementChild:obj.lastChild;
+}
+
+</script>
+</html>
+
+
+
+
+
+
